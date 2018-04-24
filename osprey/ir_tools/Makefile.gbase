@@ -159,6 +159,8 @@ CXXFILES =		\
 	$(COMMON_COM_TARG_CXX_SRCS) \
         $(BE_COM_SRCS)
 
+$(warning, This is a warn)
+
 .PHONY: default first last install
 
 default:

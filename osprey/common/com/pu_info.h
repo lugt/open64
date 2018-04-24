@@ -43,7 +43,7 @@
 #if defined(BUILD_OS_DARWIN)
 #include "darwin_elf.h"		/* for Elf64_Word */
 #else /* defined(BUILD_OS_DARWIN) */
-#include <elf.h>		/* for Elf64_Word */
+#include <libelf.h>		/* for Elf64_Word */
 #endif /* defined(BUILD_OS_DARWIN) */
 
 #include "dwarf_DST_mem.h"

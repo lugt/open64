@@ -46,7 +46,7 @@
 #endif /* __MINGW32__ */
 #include <sys/stat.h>
 #if ! defined(BUILD_OS_DARWIN)
-#include <elf.h>
+#include <libelf.h>
 #endif /* ! defined(BUILD_OS_DARWIN) */
 #include "defs.h"
 #include "mempool.h"
@@ -357,7 +357,7 @@ usage (char *progname)
   exit (1);
 }
 
-main (INT argc, char *argv[])
+int main (int argc, char *argv[])
 {
     register char *progname;
     register INT a2b, b2a, sel, all;

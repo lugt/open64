@@ -697,17 +697,3 @@ LOCALDEFS  = ./localdefs
 LOCALRULES = ./localrules
 
 -include $(LOCALDEFS)
-
-#$(warning CCF is as)
-#$(warning $(CCF))
-
-#$(warning CXXF is as)
-#$(warning $(CXXF))
-
-
-#$(warning LDF is as)
-#$(warning LDF is as follows)
-#$(warning $(LDF))
-#$(warning $(F))
-#$(warning $(CCF))
-#$(warning $(CCF))

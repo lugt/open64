@@ -87,7 +87,7 @@
 #undef long
 #endif // defined(defs_INCLUDED) && !defined(USE_STANDARD_TYPES)
 
-#include <ext/slist>
+#include <forward_list>
 #endif // __SGI_STL_LIST_H
 
 
@@ -108,7 +108,7 @@
 #endif
 
 using std::find;
-using __gnu_cxx::slist;
+using std::forward_list;
 
 // ======================================================================
 // ======================================================================
@@ -176,7 +176,7 @@ protected:
   UINT                  size;	// total number of elements present
 
 private:
-  typedef slist<growing_table *> kids_type;
+  typedef forward_list<growing_table *> kids_type;
 
   kids_type kids;	
   
@@ -250,7 +250,7 @@ public:
     {
       kids_type::iterator kid_ptr = find(kids.begin(), kids.end(), &kid);
       if (kid_ptr != kids.end()) {
-        kids.erase(kid_ptr);
+        kids.erase_after(kid_ptr);
       }
       else {
 	Fail_FmtAssertion("RELATED_SEGMENTED_ARRAY: Cannot un-register "
@@ -470,7 +470,7 @@ RELATED_SEGMENTED_ARRAY<T,block_size>::Update_Map(T    *marker,
 						  BOOL  own_memory)
 {
   do {
-    map.push_back(pair<T*, BOOL>(marker, own_memory));
+    map.push_back(std::pair<T*, BOOL>(marker, own_memory));
     new_size -= block_size;
     marker += block_size;
     own_memory = FALSE;         //Only the first entry can be freed for a block that
