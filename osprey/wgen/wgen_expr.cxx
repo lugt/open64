@@ -32,7 +32,7 @@
 // You should have received a copy of the GNU General Public License along
 // with this program; if not, write the Free Software Foundation, Inc., 59
 // Temple Place - Suite 330, Boston MA 02111-1307, USA.
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 extern "C"{
 #include "gspin-wgen-interface.h"
@@ -42,7 +42,7 @@ extern "C"{
 #else /* defined(BUILD_OS_DARWIN) */
 #include <values.h>
 #endif /* defined(BUILD_OS_DARWIN) */
-#include "pathscale_defs.h"
+//#include "pathscale_defs.h"
 #include "defs.h"
 #include "glob.h"
 #include "config.h"
@@ -6855,7 +6855,7 @@ WGEN_Expand_Expr (gs_t exp,
 	if (gs_tree_code(gs_tree_realpart(exp)) != GS_REAL_CST ||
 	    gs_tree_code(gs_tree_imagpart(exp)) != GS_REAL_CST) {
 	  printf("%s does not support complex integer data types "
-		 "(a GNU extension)\n", lang_cplus ? OPEN64_NAME_PREFIX "CC" : OPEN64_NAME_PREFIX "cc");
+		 "(a GNU extension)\n", lang_cplus ? "openCC" : "opencc");
 	  exit(2);
 	}
 #endif
@@ -6923,6 +6923,7 @@ WGEN_Expand_Expr (gs_t exp,
       {
         TYPE_ID mtyp = TY_mtype(Get_TY(gs_tree_type(exp)));
 #ifdef KEY
+	#define OPEN64_NAME_PREFIX 
 	// Bug 949, 11316
         if ((code == GS_REALPART_EXPR ||
 	     code == GS_IMAGPART_EXPR) &&

@@ -416,9 +416,9 @@ WN *WN_LOOP_LowerBound(
 
 WN *WN_LOOP_UpperBound(
 	const WN *loop,
-	OPCODE *compare,
+	OPCODE *compare
 #ifdef KEY
-        BOOL  enhanced = FALSE
+        , BOOL  enhanced = FALSE
 #endif
 );
 
@@ -428,9 +428,9 @@ WN *WN_LOOP_Increment(
 );
 
 WN *WN_LOOP_TripCount(
-	const WN *loop,
+	const WN *loop
 #ifdef KEY
-        BOOL  enhanced = FALSE
+        , BOOL  enhanced = FALSE
 #endif
 );
 
@@ -485,8 +485,10 @@ inline BOOL WN_is_black_box(const WN *wn)
 #include "list"
 #include "mempool_allocator.h"
 
+//using std::vector;
+
 typedef mempool_allocator<WN*> VEC_POOL_ALLOCATOR;
-typedef vector<WN*, VEC_POOL_ALLOCATOR> WN_VECTOR;
+typedef std::vector<WN*, VEC_POOL_ALLOCATOR> WN_VECTOR;
 
 typedef std::vector< bool, mempool_allocator<bool> > BOOL_VECTOR;
 

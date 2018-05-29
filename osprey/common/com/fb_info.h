@@ -76,6 +76,7 @@
 using Instr::vector;
 #else
 #include <vector>             // STL vector.
+using std::vector;
 #endif
 
 #ifdef MONGOOSE_BE

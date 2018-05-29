@@ -46,7 +46,9 @@
 #include <alloca.h>
 #include <strings.h>
 
-#include <ext/hash_map>			// stl hash table
+//#include <ext/hash_map>			// stl hash table
+#include <unordered_map>
+
 
 #include "defs.h"
 #include "errors.h"
@@ -242,15 +244,15 @@ struct STR_TAB
 	}
     };
 
-    
-    typedef __gnu_cxx::hashtable<STR_INDEX, hash_key, hash, extract_key, equal> HASHTABLE;
-
-    HASHTABLE hash_table;
+   typedef std::unordered_map<hash_key, STR_INDEX, hash, equal> HASHTABLE;
+   //typedef __gnu_cxx::hashtable<STR_INDEX, hash_key, hash, extract_key, equal> HASHTABLE;
+   //typedef __gnu_cxx::__hash_table<STR_INDEX, hash_key, hash, equal> HASHTABLE;
+   HASHTABLE hash_table;
 
     // constructor
 
-    STR_TAB (UINT bucket_size) : hash_table (bucket_size, hash (), equal (),
-					     extract_key (*this)),
+  STR_TAB (UINT bucket_size) : //hash_table (bucket_size, hash (), equal (),
+    //	   extract_key (*this)), 
 	buffer (NULL), last_idx (0), buffer_size (0) {}
 
 
@@ -287,20 +289,23 @@ template <class STR>
 STR_INDEX
 STR_TAB<STR>::insert (const char *str, UINT32 size)
 {
+  
     STR_INDEX index = last_idx;
-
     copy_str (str, size);
-
     STR_INDEX new_index = make_STR_INDEX (size, index);
-    STR_INDEX old_index = hash_table.find_or_insert (new_index);
 
-    if (new_index != old_index) {
+    hash_key str_hash(str, size);
+
+    // old_index = hash_table.find_or_insert(str,size);
+    typename HASHTABLE::iterator temp_index = hash_table.find(str_hash);
+    if (temp_index != hash_table.end()){
 	// already inserted, reset buffer and return
 	last_idx = index;
-	return STR_INDEX_index (old_index);
-    } else
-	return index;
-
+	return temp_index->second;
+    } else {
+      hash_table.insert(std::make_pair(hash_key(str,size), index));
+        return index;
+    }
 } // STR_TAB<STR>::insert
 
 
@@ -330,9 +335,9 @@ STR_TAB<STR>::init_hash ()
 {
     STR_INDEX idx = 1;			// first entry always null
     while (idx < last_idx) {
-
 	UINT32 length = STR::get_length (buffer + idx);
-	hash_table.insert_unique (make_STR_INDEX (length, idx));
+	hash_key str_hash("",0);
+	hash_table.insert(std::make_pair(str_hash, make_STR_INDEX (length, idx)));
 	idx += STR::get_buffer_length (length);
     }
 } // STR_TAB<STR>::init_hash

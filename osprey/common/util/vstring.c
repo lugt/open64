@@ -41,7 +41,7 @@
 #if defined(BUILD_OS_DARWIN)
 #include <stdlib.h>
 #else /* defined(BUILD_OS_DARWIN) */
-#include <malloc.h>
+#include <malloc/malloc.h>
 #endif /* defined(BUILD_OS_DARWIN) */
 #include <stdio.h>
 #include <string.h>

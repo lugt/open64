@@ -1,6 +1,11 @@
 #include <errno.h>
 #include <stdlib.h>
-#include <malloc.h>
+
+#if defined(BUILD_OS_DARWIN)
+#else
+#include <malloc/malloc.h>
+#endif
+
 #include <stdio.h>
 #include <string.h>
 #include "vcg.h"

@@ -53,8 +53,10 @@
 #include <stdio.h>
 #include <alloca.h>
 
-#include <ext/hash_map>			// stl hash table
-#include <ext/algorithm>
+//#include <ext/hash_map>			// stl hash table
+#include <unordered_map>
+#include <algorithm>
+#include <iostream>
 
 #include "defs.h"
 #include "config.h"
@@ -320,8 +322,9 @@ struct hash_pointee_key
     }
 };
 
-typedef __gnu_cxx::hash_map<TY_POINTEE_KEY, TY_IDX, hash_pointee_key>
-    TY_IDX_POINTER_MAP;
+
+//typedef __gnu_cxx::hash_map<TY_POINTEE_KEY, TY_IDX, hash_pointee_key>
+typedef std::unordered_map<TY_POINTEE_KEY, TY_IDX, hash_pointee_key> TY_IDX_POINTER_MAP;
 
 static TY_IDX_POINTER_MAP pointer_map;
 static std::pair<TY_POINTEE_KEY, TY_IDX> last_valid_map_entry;
@@ -793,7 +796,8 @@ struct TY_EQUIV
 
 // The type definition of the hash table that we will use
 
-typedef __gnu_cxx::hash_map<TY_IDX, TY_IDX, TY_hash, TY_EQUIV> HASH_TY_TABLE;
+typedef std::unordered_map<TY_IDX, TY_IDX, TY_hash, TY_EQUIV> HASH_TY_TABLE;
+//typedef __gnu_cxx::hash_map<TY_IDX, TY_IDX, TY_hash, TY_EQUIV> HASH_TY_TABLE;
 
 // The global Hash Table data structures
 // Depending on the TY_KIND we pick one of the five tables below.

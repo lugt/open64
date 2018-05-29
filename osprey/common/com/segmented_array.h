@@ -58,7 +58,7 @@
 #ifndef __GNUC__
 #include <CC/vector>
 #else
-#include "vector"
+#include <vector>
 #endif
 
 #endif // __SGI_STL_VECTOR_H

@@ -24,9 +24,7 @@
 
 #if !defined (DEMANGLE_H)
 #define DEMANGLE_H
-
 #include "ansidecl.h"
-
 #define PARAMS(ARGS) ARGS
 
 #ifdef __cplusplus
@@ -115,9 +113,8 @@ extern const struct demangler_engine
   const char *const demangling_style_doc;
 } libiberty_demanglers[];
 
-#define PARAMS(ARGS) ARGS  
-  
-extern char * cplus_demangle PARAMS ((const char *mangled, int options));
+extern char *
+cplus_demangle PARAMS ((const char *mangled, int options));
 
 extern int
 cplus_demangle_opname PARAMS ((const char *opname, char *result, int options));

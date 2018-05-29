@@ -1629,7 +1629,7 @@ Wgen_Expand_Asm_Operands (gs_t  string,
 						       NULL,
 						       plus_modifier,
 						       (TY_IDX) 0, // component type
-						       (INT64) 0,  // component offset
+						       (WN *) 0,  // component offset
 						       (UINT32) 0, // field ID
 						       FALSE,      // is bit field?
 						       NULL,       // dummy rhs kid

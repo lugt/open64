@@ -37,9 +37,9 @@
 */
 
 
-#if ! defined(BUILD_OS_DARWIN)
+//#if ! defined(BUILD_OS_DARWIN)
 #include <elf.h>
-#endif /* ! defined(BUILD_OS_DARWIN) */
+//#endif /* ! defined(BUILD_OS_DARWIN) */
 #include <errno.h>		    /* for sys_errlist */
 #include <sys/stat.h>
 #include <sys/elf_whirl.h>
@@ -55,6 +55,7 @@
 #include "ir_bread.h"		    /* for WN_open_input(), etc. */
 #include "err_host.tab"
 
+#define SHT_MIPS_WHIRL	     0x70000026
 
 static void *handle;   /* file handle */
 
@@ -167,7 +168,7 @@ usage (char *progname)
   exit (1);
 }
 
-main (INT argc, char *argv[])
+int main (INT argc, char *argv[])
 {
     register char *progname;
     INT binarg = 1;
@@ -213,6 +214,7 @@ main (INT argc, char *argv[])
     ir_size (argv[binarg], verbose);
 
     exit (0);
+    return 0;
 } /* main */
 
 

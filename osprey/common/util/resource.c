@@ -199,7 +199,7 @@ Get_Resources (
 #else /* __MINGW32__ */
 #if (1)
 #if !(defined(linux) || defined(BUILD_OS_DARWIN))
-    gettimeofday(&now);
+    gettimeofday(&now, NULL);
 #else
     gettimeofday(&now, NULL);
 #endif
@@ -355,7 +355,7 @@ Resource_Init ( void )
 #else /* __MINGW32__ */
 #if (1)
 #if !(defined(linux) || defined(BUILD_OS_DARWIN))
-    gettimeofday(&start_time);
+  gettimeofday(&start_time, NULL);
 #else
     gettimeofday(&start_time, NULL);
 #endif
