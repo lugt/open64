@@ -50,14 +50,15 @@
 
 #else /* __linux__ */
 
+#define __BSTRING_H__
+
 #ifndef __BSTRING_H__
 #define __BSTRING_H__
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
-#ident "$Revision: 1.1.1.1 $"
+//#ident "$Revision: 1.1.1.1 $"
 
 #if !defined(_SIZE_T) && !defined(_SIZE_T_)
 #define _SIZE_T
@@ -69,10 +70,10 @@ typedef unsigned long	size_t;
 #endif
 #endif
 
-extern void	bcopy(const void *, void *, size_t);
-extern int	bcmp(const void *, const void *, size_t);
-extern void	bzero(void *, size_t);
-extern void	blkclr(void *, size_t);
+extern void bcopy(const void *a, void *b, size_t c);
+extern int	bcmp(const void *a, const void *b, size_t c);
+extern void	bzero(void *a, size_t b);
+extern void	blkclr(void *a, size_t b);
 
 #ifdef __cplusplus
 }
