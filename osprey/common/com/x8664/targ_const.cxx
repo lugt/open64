@@ -5861,7 +5861,7 @@ Targ_Determine_High_Bit ( TCON t, INT32 *highbit )
     UINT64 testbit;
     if ( cval == 0 ) return FALSE;
 
-    testbit = ((INT64)1) << MTYPE_size_min(TCON_ty(t))-1;
+    testbit = ((INT64)1) << (MTYPE_size_min(TCON_ty(t))-1);
     for ( i = MTYPE_size_min(TCON_ty(t))-1; i >= 0; i-- ) {
       if ( (cval & testbit) != 0 ) {
 	if ( highbit != NULL ) *highbit = i;
