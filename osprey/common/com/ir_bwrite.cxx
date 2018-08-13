@@ -432,6 +432,11 @@ create_temp_file (Output_File *fl)
  * open at once.  Returns NULL if the file cannot be opened.
  */
 
+void set_sigv_random(){
+  old_sigsegv = (void (*)(int))1;
+  old_sigbus = (void (*)(int))1;
+}
+
 Output_File *
 WN_open_output (char *file_name)
 {
@@ -1553,6 +1558,7 @@ Output_File *
 Open_Output_Info (char *output_file)
 {
     Set_Error_Phase ("Writing WHIRL file" );
+    printf("%s%s\n", "Open_Output_Info WHIRL : fn = ", output_file);
     ir_output = WN_open_output (output_file);
     if (!ir_output) {
 	ErrMsg (EC_IR_Create, output_file, errno);
