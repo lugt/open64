@@ -3,7 +3,7 @@
 
 #if defined(BUILD_OS_DARWIN)
 #else
-#include <malloc/malloc.h>
+#include <malloc.h>
 #endif
 
 #include <stdio.h>

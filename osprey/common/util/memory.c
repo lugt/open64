@@ -49,7 +49,7 @@
 #if defined(BUILD_OS_DARWIN)
 #include <stdlib.h>
 #else /* defined(BUILD_OS_DARWIN) */
-#include <malloc/malloc.h>
+#include <malloc.h>
 #endif /* defined(BUILD_OS_DARWIN) */
 #include <bstring.h>
 #include "defs.h"
